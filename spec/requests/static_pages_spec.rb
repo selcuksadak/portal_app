@@ -11,7 +11,12 @@ describe "StaticPages" do
 
 		it "should have the title 'Ana Sayfa'" do
 			visit '/static_pages/home'
-			expect(page).to have_title("Portal | Ana Sayfa")
+			expect(page).to have_title("Portal")
+		end
+
+		it "should not have a custom page title" do
+			visit '/static_pages/home'
+			expect(page).not_to have_title('| Ana Sayfa')
 		end
 	end
 
@@ -38,6 +43,19 @@ describe "StaticPages" do
 		it "should have the title 'Hakkında'" do
 			visit '/static_pages/about'
 			expect(page).to have_title("Portal | Hakkında")
+		end
+	end
+
+	describe "Contact page" do
+
+		it "should have the content 'İletişim'" do
+			visit '/static_pages/contact'
+			expect(page).to have_content('İletişim')
+		end
+
+		it "should have the title 'İletişim'" do
+			visit '/static_pages/contact'
+			expect(page).to have_title("Portal | İletişim")
 		end
 	end
 end
